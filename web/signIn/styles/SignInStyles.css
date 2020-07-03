@@ -1,0 +1,133 @@
+#rectangle{
+    width: 550px;
+    height: 350px;
+    background: silver;
+    opacity: 0.45;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.header-h1 {
+    position: relative;
+    margin-bottom: .5rem;
+    text-align: center;
+}
+.header-h1 h1 {
+    display: inline-block;
+    background: #fff;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: .5rem 1.5rem;
+    border: .200rem solid silver;
+    color: navy;
+}
+.header-h1 h1::after {
+    content: "";
+    position: absolute;
+    background: silver;
+    height: .200rem;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    z-index: -999;
+}
+
+.input-field{
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+input{
+
+    width: 250px;
+    height: 20px;
+    padding: 6px 0 4px 10px;
+    border-radius: 6px;
+}
+
+.ccd {
+
+    height: 90px;
+    width: 60%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: -25px;
+}
+
+a.ddott {
+    margin:0 auto;
+    display: block;
+    line-height: 50px;
+    height: 50px;
+    width: 26%;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 0 100px 0 gainsboro,1px 76px 10px gainsboro;
+    color: gainsboro;
+    background: midnightblue;
+    border-right: 2px solid gainsboro;
+    border-left: 2px solid gainsboro;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+
+}
+
+a.ddott:hover {
+    text-shadow: 0 50px 0 midnightblue, 1px 51px 20px midnightblue;
+    border-right: 2px solid midnightblue;
+    border-left: 2px solid midnightblue;
+    margin-top: -50px;
+    height: 100px;
+    background: gainsboro;
+}
+
+button{
+    margin:0 auto;
+    display: block;
+    line-height: 50px;
+    height: 50px;
+    width: 27%;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 0 100px 0 gainsboro,1px 76px 10px gainsboro;
+    color: gainsboro;
+    background: midnightblue;
+    border: 0;
+    border-right: 2px solid gainsboro;
+    border-left: 2px solid gainsboro;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+
+}
+
+button:hover {
+    text-shadow: 0 25px 0 midnightblue, 1px 51px 20px midnightblue;
+    border: 0;
+    border-right: 2px solid midnightblue;
+    border-left: 2px solid midnightblue;
+    margin-top: -50px;
+    height: 100px;
+    background: gainsboro;
+}
+
+.buttons{
+    position: relative;
+    top: 300px;
+    left: 297px;
+}
