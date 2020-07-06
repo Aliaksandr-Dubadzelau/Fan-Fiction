@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: aldub
-  Date: 01.07.2020
-  Time: 14:48
+  Date: 06.07.2020
+  Time: 22:02
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mismatched passwords</title>
+    <title>Empty field</title>
 
     <style>
         html { overflow-x: hidden; }
@@ -31,7 +31,7 @@
 </div>
 
 <div id="not-found">
-    <h2>Mismatched passwords</h2>
+    <h2>Some fields is empty</h2>
 </div>
 
 </body>

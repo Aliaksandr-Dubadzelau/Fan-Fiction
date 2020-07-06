@@ -1,0 +1,38 @@
+#not-found{
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    transform: translate(-50%, -50%)
+}
+
+h2{
+    color: silver;
+    font-size: 48px;
+}
+
+.header-h1 {
+    position: relative;
+    margin-bottom: .5rem;
+    text-align: center;
+}
+.header-h1 h1 {
+    display: inline-block;
+    background: #fff;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: .5rem 1.5rem;
+    border: .200rem solid silver;
+    color: navy;
+}
+.header-h1 h1::after {
+    content: "";
+    position: absolute;
+    background: silver;
+    height: .200rem;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    z-index: -999;
+}
