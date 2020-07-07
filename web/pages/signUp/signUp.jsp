@@ -22,6 +22,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/signUp/styles/SignUpStyles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/resources/styles/GeneralPageStyle.css">
 
 </head>
 <body>

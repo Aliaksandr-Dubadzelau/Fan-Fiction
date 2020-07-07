@@ -22,6 +22,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/mainMessengerWindow/styles/MessengerMainWindowStyles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/resources/styles/GeneralPageStyle.css">
 
 </head>
 <body>

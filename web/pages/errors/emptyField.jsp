@@ -22,6 +22,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/errors/styles/Styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/resources/styles/GeneralPageStyle.css">
 
 </head>
 <body>
@@ -30,7 +31,7 @@
         <h1>Dav Messenger</h1>
     </div>
 
-    <div id="not-found">
+    <div id="error-message-position">
         <h2>Some fields is empty</h2>
     </div>
 

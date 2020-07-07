@@ -9,33 +9,6 @@
     transform: translate(-50%, -50%)
 }
 
-.header-h1 {
-    position: relative;
-    margin-bottom: .5rem;
-    text-align: center;
-}
-.header-h1 h1 {
-    display: inline-block;
-    background: #fff;
-    margin-bottom: 0;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    padding: .5rem 1.5rem;
-    border: .200rem solid silver;
-    color: navy;
-}
-.header-h1 h1::after {
-    content: "";
-    position: absolute;
-    background: silver;
-    height: .200rem;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%);
-    z-index: -999;
-}
-
 .input-field{
 
     position: absolute;
@@ -128,6 +101,6 @@ button:hover {
 
 .buttons{
     position: relative;
-    top: 300px;
-    left: 297px;
+    margin-top: 22%;
+    left: 20%;
 }

@@ -23,6 +23,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/signIn/styles/SignInStyles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/resources/styles/GeneralPageStyle.css">
 
 </head>
 <body>
