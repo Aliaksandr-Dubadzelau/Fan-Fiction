@@ -14,25 +14,25 @@
     <style>
         html { overflow-x: hidden; }
         body{
-            background: darkblue url("/resources/exceptionBackgrownd.jpg");
+            background: darkblue url("/pages/resources/exceptionBackgrownd.jpg");
             color: navy;
             background-attachment: fixed;
             background-repeat: repeat-x;
         }
     </style>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/errors/styles/Styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/errors/styles/Styles.css">
 
 </head>
 <body>
 
-<div class="header-h1">
-    <h1>Dav Messenger</h1>
-</div>
+    <div class="header-h1">
+        <h1>Dav Messenger</h1>
+    </div>
 
-<div id="not-found">
-    <h2>User with that login already exists</h2>
-</div>
+    <div id="not-found">
+        <h2>User with that login already exists</h2>
+    </div>
 
 </body>
 </html>

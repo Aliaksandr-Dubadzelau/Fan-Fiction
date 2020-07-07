@@ -36,18 +36,18 @@ public class SignUp extends HttpServlet {
         boolean isEmptyRepeatPassword = emptyFieldValidator.check(repeatPassword);
 
         if (isEmptyLogin || isEmptyPassword || isEmptyRepeatPassword) {
-            response.sendRedirect("/errors/emptyField.jsp");
+            response.sendRedirect("/pages/errors/emptyField.jsp");
         }
         else {
             if (passwordValidator.comparePassword(password, repeatPassword)) {
-                response.sendRedirect("/errors/mismatchedPasswords.jsp");
+                response.sendRedirect("/pages/errors/mismatchedPasswords.jsp");
             } else {
 
                 User user = userService.getUser(login, password);
                 boolean isUserExist = userValidator.check(user);
 
                 if (isUserExist) {
-                    response.sendRedirect("/errors/suchUserExisted.jsp");
+                    response.sendRedirect("/pages/errors/suchUserExisted.jsp");
                 } else {
 
                     dbService.addEntity("jdbc:postgresql://localhost:5432/UsersDB", "Aliaksandr Dubadzelau", "551408", "usersdb", user);
@@ -60,7 +60,7 @@ public class SignUp extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext servletContext = getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/signUp/signUp.jsp");
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/pages/signUp/signUp.jsp");
         requestDispatcher.forward(request, response);
 
     }

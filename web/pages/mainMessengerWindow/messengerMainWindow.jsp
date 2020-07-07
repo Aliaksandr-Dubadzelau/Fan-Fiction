@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entity.User" %><%--
   Created by IntelliJ IDEA.
   User: aldub
   Date: 07.07.2020
@@ -14,21 +14,28 @@
     <style>
         html { overflow-x: hidden; }
         body{
-            background: darkblue url("/resources/exceptionBackgrownd.jpg");
+            background: darkblue url("/pages/resources/exceptionBackgrownd.jpg");
             color: navy;
             background-attachment: fixed;
             background-repeat: repeat-x;
         }
     </style>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mainMessengerWindow/styles/MessengerMainWindowStyles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/mainMessengerWindow/styles/MessengerMainWindowStyles.css">
 
 </head>
 <body>
 
-<div class="header-h1">
-    <h1>Dav Messenger</h1>
-</div>
+    <%
+        User user = (User)session.getAttribute("user");
+        if(user == null){
+            response.sendRedirect("/SignIn");
+        }
+    %>
+
+    <div class="header-h1">
+        <h1>Dav Messenger</h1>
+    </div>
 
 </body>
 </html>

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -35,13 +36,18 @@ public class SignIn extends HttpServlet {
         boolean isEmptyPassword = emptyFieldValidator.check(password);
 
         if(isEmptyLogin || isEmptyPassword){
-            response.sendRedirect("/errors/emptyField.jsp");
+            response.sendRedirect("/pages/errors/emptyField.jsp");
         }
         else if (isUserExisted) {
+
+
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+
             response.sendRedirect("/MessengerMainWindow");
         }
         else {
-            response.sendRedirect("/errors/noSuchUser.jsp");
+            response.sendRedirect("/pages/errors/noSuchUser.jsp");
         }
 
     }
@@ -50,7 +56,7 @@ public class SignIn extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext servletContext = getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/signIn/signIn.jsp");
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/pages/signIn/signIn.jsp");
         requestDispatcher.forward(request, response);
 
     }
