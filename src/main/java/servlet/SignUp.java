@@ -7,6 +7,8 @@ import validators.EmptyFieldValidator;
 import validators.MismatchedPasswordValidator;
 import validators.UserValidator;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,13 +51,17 @@ public class SignUp extends HttpServlet {
                 } else {
 
                     dbService.addEntity("jdbc:postgresql://localhost:5432/UsersDB", "Aliaksandr Dubadzelau", "551408", "usersdb", user);
-                    response.sendRedirect("/signIn/signIn.html");
+                    response.sendRedirect("/SignIn");
                 }
             }
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        ServletContext servletContext = getServletContext();
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/signUp/signUp.jsp");
+        requestDispatcher.forward(request, response);
 
     }
 }

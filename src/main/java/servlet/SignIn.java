@@ -38,7 +38,7 @@ public class SignIn extends HttpServlet {
             response.sendRedirect("/errors/emptyField.jsp");
         }
         else if (isUserExisted) {
-            response.sendRedirect("/mainMessengerWindow/messengerMainWindow.html");
+            response.sendRedirect("/MessengerMainWindow");
         }
         else {
             response.sendRedirect("/errors/noSuchUser.jsp");
@@ -48,6 +48,10 @@ public class SignIn extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        ServletContext servletContext = getServletContext();
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/signIn/signIn.jsp");
+        requestDispatcher.forward(request, response);
 
     }
 }
