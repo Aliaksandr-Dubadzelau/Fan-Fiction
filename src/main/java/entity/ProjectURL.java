@@ -11,7 +11,8 @@ public enum ProjectURL {
     SUCH_USER_EXISTED("/pages/errors/suchUserExisted.jsp"),
     SIGN_IN_JSP("/pages/signIn/signIn.jsp"),
     SIGN_UP_JSP("/pages/signUp/signUp.jsp"),
-    MESSENGER_MAIN_WINDOW_JSP("/pages/mainMessengerWindow/messengerMainWindow.jsp");
+    MESSENGER_MAIN_WINDOW_JSP("/pages/mainMessengerWindow/messengerMainWindow.jsp"),
+    ADMIN_PANEL_JSP("/pages/adminPanel/adminPanel.jsp");
 
     private String URL;
 

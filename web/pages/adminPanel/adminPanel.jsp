@@ -1,4 +1,6 @@
-<%--
+<%@ page import="entity.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.io.IOException" %><%--
   Created by IntelliJ IDEA.
   User: aldub
   Date: 07.07.2020
@@ -28,6 +30,33 @@
     <div class="header-h1">
         <h1>Dav Messenger</h1>
     </div>
+
+    <div id="usersTable">
+
+        <table>
+            <tr>
+                <th>User login</th>
+                <th>User password</th>
+                <th>Delete</th>
+            </tr>
+
+
+            <%
+                for (User user : (List<User>) request.getAttribute("users")){
+            %>
+
+            <tr>
+                <td> <%= user.getLogin() %> </td>
+                <td> <%= user.getPassword() %> </td>
+                <td> Button would be hear </td>
+            </tr>
+
+            <%}%>
+
+        </table>
+
+    </div>
+
 
 </body>
 </html>

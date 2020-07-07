@@ -3,6 +3,8 @@ package services;
 import entity.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBService {
 
@@ -97,4 +99,38 @@ public class DBService {
 
     }
 
+    public List<User> getUsers(String url, String name, String password, String db){
+
+        UserService userService = new UserService();
+        List<User> users = new ArrayList<>();
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try (Connection connection = DriverManager.getConnection(url, name, password);
+             Statement statement = connection.createStatement())
+        {
+
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + db);
+
+            while (resultSet.next()) {
+
+                String dbLogin = resultSet.getString(2);
+                String dbPassword = resultSet.getString(3);
+                User user = userService.getUser(dbLogin, dbPassword);
+
+                users.add(user);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+
+    }
 }
