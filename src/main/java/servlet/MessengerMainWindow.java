@@ -1,5 +1,7 @@
 package servlet;
 
+import entity.ProjectURL;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -19,7 +21,7 @@ public class MessengerMainWindow extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext servletContext = getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/pages/mainMessengerWindow/messengerMainWindow.jsp");
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(ProjectURL.MESSENGER_MAIN_WINDOW_JSP.getURL());
         requestDispatcher.forward(request, response);
 
     }

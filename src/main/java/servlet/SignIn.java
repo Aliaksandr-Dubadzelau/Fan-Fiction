@@ -1,6 +1,6 @@
 package servlet;
 
-import com.sun.org.apache.xerces.internal.impl.dv.DVFactoryException;
+import entity.ProjectURL;
 import entity.User;
 import services.DBService;
 import services.UserService;
@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.*;
 
 @WebServlet("/SignIn")
 public class SignIn extends HttpServlet {
@@ -29,6 +27,7 @@ public class SignIn extends HttpServlet {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+
         User user = userService.getUser(login, password);
 
         boolean isUserExisted = dbService.isEntityDB("jdbc:postgresql://localhost:5432/UsersDB", "Aliaksandr Dubadzelau", "551408", "usersdb", user);
@@ -36,7 +35,7 @@ public class SignIn extends HttpServlet {
         boolean isEmptyPassword = emptyFieldValidator.check(password);
 
         if(isEmptyLogin || isEmptyPassword){
-            response.sendRedirect("/pages/errors/emptyField.jsp");
+            response.sendRedirect(ProjectURL.EMPTY_FIELD.getURL());
         }
         else if (isUserExisted) {
 
@@ -44,10 +43,10 @@ public class SignIn extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            response.sendRedirect("/MessengerMainWindow");
+            response.sendRedirect(ProjectURL.MESSENGER_MAIN_WINDOW.getURL());
         }
         else {
-            response.sendRedirect("/pages/errors/noSuchUser.jsp");
+            response.sendRedirect(ProjectURL.NO_SUCH_USER.getURL());
         }
 
     }
@@ -56,7 +55,7 @@ public class SignIn extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext servletContext = getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/pages/signIn/signIn.jsp");
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(ProjectURL.SIGN_IN_JSP.getURL());
         requestDispatcher.forward(request, response);
 
     }

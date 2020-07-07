@@ -1,5 +1,6 @@
 package servlet;
 
+import entity.ProjectURL;
 import entity.User;
 import services.DBService;
 import services.UserService;
@@ -36,22 +37,22 @@ public class SignUp extends HttpServlet {
         boolean isEmptyRepeatPassword = emptyFieldValidator.check(repeatPassword);
 
         if (isEmptyLogin || isEmptyPassword || isEmptyRepeatPassword) {
-            response.sendRedirect("/pages/errors/emptyField.jsp");
+            response.sendRedirect(ProjectURL.EMPTY_FIELD.getURL());
         }
         else {
             if (passwordValidator.comparePassword(password, repeatPassword)) {
-                response.sendRedirect("/pages/errors/mismatchedPasswords.jsp");
+                response.sendRedirect(ProjectURL.MISMATCHED_PASSWORD.getURL());
             } else {
 
                 User user = userService.getUser(login, password);
                 boolean isUserExist = userValidator.check(user);
 
                 if (isUserExist) {
-                    response.sendRedirect("/pages/errors/suchUserExisted.jsp");
+                    response.sendRedirect(ProjectURL.SUCH_USER_EXISTED.getURL());
                 } else {
 
                     dbService.addEntity("jdbc:postgresql://localhost:5432/UsersDB", "Aliaksandr Dubadzelau", "551408", "usersdb", user);
-                    response.sendRedirect("/SignIn");
+                    response.sendRedirect(ProjectURL.SIGN_IN.getURL());
                 }
             }
         }
@@ -60,7 +61,7 @@ public class SignUp extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext servletContext = getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/pages/signUp/signUp.jsp");
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(ProjectURL.SIGN_UP_JSP.getURL());
         requestDispatcher.forward(request, response);
 
     }

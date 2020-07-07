@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entity.ProjectURL" %><%--
   Created by IntelliJ IDEA.
   User: aldub
   Date: 07.07.2020
@@ -46,7 +46,7 @@
 
     <div class="buttons">
         <div class="ccd"><button name="signInButton">Sign In</button></div>
-        <div class="ccd"><a href="${pageContext.request.contextPath}/SignUp" class="ddott">Sign Up</a></div>
+        <div class="ccd"><a href="<%=ProjectURL.SIGN_UP.getURL()%>" class="ddott">Sign Up</a></div>
     </div>
 
 </form>
