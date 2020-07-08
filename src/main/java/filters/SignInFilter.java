@@ -22,7 +22,7 @@ public class SignInFilter implements Filter {
 
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
-        signIn = fConfig.getInitParameter("SignIn   ");
+        signIn = fConfig.getInitParameter("SignIn");
     }
 
     @Override

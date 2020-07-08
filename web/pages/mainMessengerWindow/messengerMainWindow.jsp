@@ -26,10 +26,23 @@
 
 </head>
 <body>
+    <form name="mainWindowForm"> <%--  action="${pageContext.request.contextPath}/SignIn" method="post">--%>
 
-    <div class="header-h1">
-        <h1>Dav Messenger</h1>
-    </div>
+        <div class="header-h1">
+            <h1>Dav Messenger</h1>
+        </div>
 
+        <label>
+            <textarea name="messenger" class="messenger" readonly></textarea>
+            <textarea name="message" class="message" placeholder="Your message" autofocus ></textarea>
+        </label>
+
+        <% User user = (User) session.getAttribute("user");%>
+
+        <input type="button" onclick= "mainWindowForm.messenger.value += '<%=user.getLogin()%>' + ': ' +
+                mainWindowForm.message.value + '\n'; mainWindowForm.message.value = '';
+                mainWindowForm.messenger.scrollTop=mainWindowForm.messenger.scrollHeight"/>
+
+    </form>
 </body>
 </html>

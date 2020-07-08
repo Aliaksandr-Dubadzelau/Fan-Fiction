@@ -1,1 +1,56 @@
+.messenger{
+    background: white;
+    border:2px solid silver;
+    border-radius: 6px;
+    outline: none;
+    -moz-appearance: none;
+    resize: none;
+    overflow: auto;
+    font-size: 16px;
+    color: midnightblue;
+    width: 40%;
+    height: 70%;
 
+    position: relative;
+    margin-left:30%;
+    margin-top: 1%;
+}
+
+.message{
+    background: white;
+    border:2px solid silver;
+    border-radius: 6px;
+    outline: none;
+    -moz-appearance: none;
+    resize: none;
+    overflow: auto;
+    font-size: 16px;
+    color: midnightblue;
+    width: 40%;
+    height: 10%;
+
+    position: relative;
+    margin-left: 30%;
+    margin-top: 2%;
+
+    caret-color: gold;
+}
+
+input {
+    background: transparent url("/pages/resources/simpleButton.png");
+    width: 48px;
+    height: 48px;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    position: absolute;
+    margin-left: 1%;
+    margin-top: 4%;
+}
+
+input:hover {
+    background: transparent url("/pages/resources/hoverButton.png");
+}
