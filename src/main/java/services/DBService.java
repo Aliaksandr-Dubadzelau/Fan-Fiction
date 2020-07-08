@@ -99,6 +99,27 @@ public class DBService {
 
     }
 
+    public void deleteEntity(String url, String name, String password, String db, User user){
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try (Connection connection = DriverManager.getConnection(url, name, password);
+             Statement statement = connection.createStatement()
+        ){
+
+            statement.executeUpdate("DELETE FROM " + db + " WHERE login = '" + user.getLogin() + "'");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     public List<User> getUsers(String url, String name, String password, String db){
 
         UserService userService = new UserService();

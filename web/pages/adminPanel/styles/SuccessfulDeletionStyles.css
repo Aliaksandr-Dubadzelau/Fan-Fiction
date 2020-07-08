@@ -1,0 +1,11 @@
+#message-position{
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    transform: translate(-50%, -50%)
+}
+
+h2{
+    color: silver;
+    font-size: 48px;
+}

@@ -1,15 +1,14 @@
-<%@ page import="entity.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: aldub
-  Date: 07.07.2020
-  Time: 11:12
+  Date: 08.07.2020
+  Time: 13:28
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Main Messenger Window</title>
+    <title>Unauthorized access</title>
 
     <style>
         html { overflow-x: hidden; }
@@ -21,7 +20,7 @@
         }
     </style>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/mainMessengerWindow/styles/MessengerMainWindowStyles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/errors/styles/Styles.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/resources/styles/GeneralPageStyle.css">
 
 </head>
@@ -29,6 +28,10 @@
 
     <div class="header-h1">
         <h1>Dav Messenger</h1>
+    </div>
+
+    <div id="error-message-position">
+        <h2>Unauthorized access</h2>
     </div>
 
 </body>

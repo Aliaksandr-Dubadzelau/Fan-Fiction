@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/pages/resources/styles/GeneralPageStyle.css">
 </head>
 <body>
-
+<form name="adminPanelForm" action="${pageContext.request.contextPath}/AdminPanel" method="post">
     <div class="header-h1">
         <h1>Dav Messenger</h1>
     </div>
@@ -42,16 +42,18 @@
 
 
             <%
+                int id = 0;
                 for (User user : (List<User>) request.getAttribute("users")){
             %>
 
             <tr>
                 <td> <%= user.getLogin() %> </td>
                 <td> <%= user.getPassword() %> </td>
-                <td> Button would be hear </td>
+                <td> <button name="delete" value=<%= id%>>Delete</button></td>
             </tr>
 
-            <%}%>
+            <% id++;
+                }%>
 
         </table>
 
