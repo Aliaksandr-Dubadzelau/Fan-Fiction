@@ -28,7 +28,7 @@
 <body>
 <form name="adminPanelForm" action="${pageContext.request.contextPath}/AdminPanel" method="post">
     <div class="header-h1">
-        <h1>Dav Messenger</h1>
+        <h1>Dav - Fan fiction</h1>
     </div>
 
     <div id="usersTable">

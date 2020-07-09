@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/MessengerMainWindow", "/pages/mainMessengerWindow/*"}, initParams = {
+@WebFilter(urlPatterns = {"/FanFictionMainWindow", "/pages/fanFictionMainWindow/*"}, initParams = {
         @WebInitParam(name = "SignIn", value = "/SignIn")
 })
 public class SignInFilter implements Filter {

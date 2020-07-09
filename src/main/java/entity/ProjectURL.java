@@ -3,7 +3,7 @@ package entity;
 public enum ProjectURL {
     SIGN_IN("/SignIn"),
     SIGN_UP("/SignUp"),
-    MESSENGER_MAIN_WINDOW("/MessengerMainWindow"),
+    MESSENGER_MAIN_WINDOW("/FanFictionMainWindow"),
     NOT_FOUND("/pages/errors/404.html"),
     EMPTY_FIELD("/pages/errors/emptyField.jsp"),
     MISMATCHED_PASSWORD("/pages/errors/mismatchedPasswords.jsp"),
@@ -11,9 +11,10 @@ public enum ProjectURL {
     SUCH_USER_EXISTED("/pages/errors/suchUserExisted.jsp"),
     SIGN_IN_JSP("/pages/signIn/signIn.jsp"),
     SIGN_UP_JSP("/pages/signUp/signUp.jsp"),
-    MESSENGER_MAIN_WINDOW_JSP("/pages/mainMessengerWindow/messengerMainWindow.jsp"),
+    MESSENGER_MAIN_WINDOW_JSP("/pages/fanFictionMainWindow/fanFictionMainWindow.jsp"),
     ADMIN_PANEL_JSP("/pages/adminPanel/adminPanel.jsp"),
-    SUCCESSFUL_DELETION("/pages/adminPanel/successfulDeletion.jsp");
+    SUCCESSFUL_DELETION("/pages/adminPanel/successfulDeletion.jsp"),
+    SUCCESSFUL_ADDED("/pages/fanFictionMainWindow/successfullyAdded.jsp");
 
     private String URL;
 

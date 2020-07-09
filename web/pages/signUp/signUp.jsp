@@ -29,7 +29,7 @@
 <form name="signUpForm" action="${pageContext.request.contextPath}/SignUp" method="post">
 
     <div class="header-h1">
-        <h1>Dav Messenger</h1>
+        <h1>Dav - Fan fiction</h1>
     </div>
 
     <div id="rectangle"></div>

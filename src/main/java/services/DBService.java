@@ -1,5 +1,6 @@
 package services;
 
+import entity.Message;
 import entity.User;
 
 import java.sql.*;
@@ -154,4 +155,64 @@ public class DBService {
         return users;
 
     }
+
+
+
+
+
+
+    public void addMessage(String url, String name, String password, String db, Message message){
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try (Connection connection = DriverManager.getConnection(url, name, password);
+             Statement statement = connection.createStatement()
+        ){
+
+            statement.executeUpdate("INSERT INTO " + db + " (message) VALUES ('" + message.toString() + "')");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public List<Message> getMessages(String url, String name, String password, String db){
+
+        MessageService messageService = new MessageService();
+        List<Message> messages = new ArrayList<>();
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try (Connection connection = DriverManager.getConnection(url, name, password);
+             Statement statement = connection.createStatement())
+        {
+
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + db);
+
+            while (resultSet.next()) {
+
+                String dbMessage = resultSet.getString(2);
+                Message message = messageService.getMessage(dbMessage);
+
+                messages.add(message);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return messages;
+
+    }
+
 }
