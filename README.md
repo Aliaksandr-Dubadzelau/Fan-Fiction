@@ -12,4 +12,4 @@ Backend was created with JavaEE - servletes, servlete-filters.
 Frontend was create with JSP, HTML/HTML5, CSS/CSS3
 Database was developed with SQL on PostgreSQL DBMS.
 
-![in](https://github.com/Aliaksandr-Dubadzelau/Messenger/tree/master/presentation/in.PNG)
+![ScreenShot](https://github.com/Aliaksandr-Dubadzelau/Messenger/tree/master/presentation/in.PNG)
