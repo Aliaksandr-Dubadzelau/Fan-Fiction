@@ -11,9 +11,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/FanFictionMainWindow", "/pages/fanFictionMainWindow/*"}, initParams = {
-        @WebInitParam(name = "SignIn", value = "/SignIn")
-})
+        @WebInitParam(name = "SignIn", value ="/SignIn")})
+
 public class SignInFilter implements Filter {
+
+    private final static String SIGN_IN = "SignIn";
 
     private String signIn;
 
@@ -22,7 +24,7 @@ public class SignInFilter implements Filter {
 
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
-        signIn = fConfig.getInitParameter("SignIn");
+        signIn = fConfig.getInitParameter(SIGN_IN);
     }
 
     @Override

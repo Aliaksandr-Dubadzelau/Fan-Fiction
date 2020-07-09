@@ -9,9 +9,7 @@ import java.util.List;
 
 public class DBService {
 
-    public boolean isEntityDB(String url, String name, String password, String db, User user){
-
-        boolean isExisted = false;
+    public void editTable(String url, String name, String password, String requestSQL) {
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -20,10 +18,34 @@ public class DBService {
         }
 
         try (Connection connection = DriverManager.getConnection(url, name, password);
-             Statement statement = connection.createStatement())
-        {
+             Statement statement = connection.createStatement()) {
 
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + db);
+            statement.executeUpdate(requestSQL);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ResultSet getResultSet(String url, String name, String password, String requestSQL) throws SQLException {
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        Connection connection = DriverManager.getConnection(url, name, password);
+        Statement statement = connection.createStatement();
+
+        return statement.executeQuery(requestSQL);
+    }
+
+    public boolean isUserInDB(String url, String name, String password, String requestSQL, User user) {
+
+        boolean isExisted = false;
+
+        try (ResultSet resultSet = getResultSet(url, name, password, requestSQL)) {
 
             while (resultSet.next()) {
 
@@ -45,21 +67,11 @@ public class DBService {
 
     }
 
-    public boolean isLoginDB(String url, String name, String password, String db, User user){
+    public boolean isLoginInDB(String url, String name, String password, String requestSQL, User user) {
 
         boolean isExisted = false;
 
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection connection = DriverManager.getConnection(url, name, password);
-             Statement statement = connection.createStatement())
-        {
-
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + db);
+        try (ResultSet resultSet = getResultSet(url, name, password, requestSQL)) {
 
             while (resultSet.next()) {
 
@@ -80,63 +92,12 @@ public class DBService {
 
     }
 
-    public void addEntity(String url, String name, String password, String db, User user){
-
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection connection = DriverManager.getConnection(url, name, password);
-             Statement statement = connection.createStatement()
-        ){
-
-            statement.executeUpdate("INSERT INTO " + db + " (login, password) VALUES ('" + user.getLogin() + "','" + user.getPassword() + "')");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void deleteEntity(String url, String name, String password, String db, User user){
-
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection connection = DriverManager.getConnection(url, name, password);
-             Statement statement = connection.createStatement()
-        ){
-
-            statement.executeUpdate("DELETE FROM " + db + " WHERE login = '" + user.getLogin() + "'");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    public List<User> getUsers(String url, String name, String password, String db){
+    public List<User> getUsers(String url, String name, String password, String requestString) {
 
         UserService userService = new UserService();
         List<User> users = new ArrayList<>();
 
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection connection = DriverManager.getConnection(url, name, password);
-             Statement statement = connection.createStatement())
-        {
-
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + db);
+        try (ResultSet resultSet = getResultSet(url, name, password, requestString)) {
 
             while (resultSet.next()) {
 
@@ -147,56 +108,19 @@ public class DBService {
                 users.add(user);
 
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return users;
-
     }
 
-
-
-
-
-
-    public void addMessage(String url, String name, String password, String db, Message message){
-
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection connection = DriverManager.getConnection(url, name, password);
-             Statement statement = connection.createStatement()
-        ){
-
-            statement.executeUpdate("INSERT INTO " + db + " (message) VALUES ('" + message.toString() + "')");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public List<Message> getMessages(String url, String name, String password, String db){
+    public List<Message> getMessages(String url, String name, String password, String requestSQL) {
 
         MessageService messageService = new MessageService();
         List<Message> messages = new ArrayList<>();
 
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection connection = DriverManager.getConnection(url, name, password);
-             Statement statement = connection.createStatement())
-        {
-
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + db);
+        try (ResultSet resultSet = getResultSet(url, name, password, requestSQL)) {
 
             while (resultSet.next()) {
 
@@ -204,7 +128,6 @@ public class DBService {
                 Message message = messageService.getMessage(dbMessage);
 
                 messages.add(message);
-
             }
 
         } catch (SQLException e) {
@@ -212,7 +135,5 @@ public class DBService {
         }
 
         return messages;
-
     }
-
 }

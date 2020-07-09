@@ -1,10 +1,13 @@
 package servlet;
 
+import entity.ConstantsDB;
 import entity.ProjectURL;
+import entity.RequestSQL;
 import entity.User;
 import services.DBService;
 import services.UserService;
 import validators.EmptyFieldValidator;
+import validators.UserValidator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -20,25 +23,23 @@ import java.io.IOException;
 public class SignIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        DBService dbService = new DBService();
         UserService userService = new UserService();
 
         EmptyFieldValidator emptyFieldValidator = new EmptyFieldValidator();
+        UserValidator userValidator = new UserValidator();
 
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        String userLogin = request.getParameter("login");
+        String userPassword = request.getParameter("password");
+        User user = userService.getUser(userLogin, userPassword);
 
-        User user = userService.getUser(login, password);
-
-        boolean isUserExisted = dbService.isEntityDB("jdbc:postgresql://localhost:5432/UsersDB", "Aliaksandr Dubadzelau", "551408", "usersdb", user);
-        boolean isEmptyLogin = emptyFieldValidator.check(login);
-        boolean isEmptyPassword = emptyFieldValidator.check(password);
+        boolean isUserExisted = userValidator.checkUser(user);
+        boolean isEmptyLogin = emptyFieldValidator.check(userLogin);
+        boolean isEmptyPassword = emptyFieldValidator.check(userPassword);
 
         if(isEmptyLogin || isEmptyPassword){
             response.sendRedirect(ProjectURL.EMPTY_FIELD.getURL());
         }
         else if (isUserExisted) {
-
 
             HttpSession session = request.getSession();
             session.setAttribute("user", user);

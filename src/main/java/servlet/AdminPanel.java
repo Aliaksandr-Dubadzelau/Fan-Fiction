@@ -1,6 +1,8 @@
 package servlet;
 
+import entity.ConstantsDB;
 import entity.ProjectURL;
+import entity.RequestSQL;
 import entity.User;
 import services.DBService;
 import services.UserService;
@@ -28,11 +30,30 @@ public class AdminPanel extends HttpServlet {
 
         DBService dbService = new DBService();
 
-        List<User> users = dbService.getUsers("jdbc:postgresql://localhost:5432/UsersDB", "Aliaksandr Dubadzelau", "551408", "usersdb");
+        String url = ConstantsDB.DATABASE_URL.getData();
+        String login = ConstantsDB.LOGIN.getData();
+        String password = ConstantsDB.PASSWORD.getData();
+        String dbUsers = ConstantsDB.USERS_TABLE.getData();
+
+        String select = RequestSQL.SELECT.getRequest();
+        String selectRequestSQL = select + dbUsers;
+
+        List<User> users = dbService.getUsers(url, login, password, selectRequestSQL);
 
         for (int i = 0; i < users.size(); i++) {
             if (delete == i) {
-                dbService.deleteEntity("jdbc:postgresql://localhost:5432/UsersDB", "Aliaksandr Dubadzelau", "551408", "usersdb", users.get(i));
+
+                User deletedUser = users.get(i);
+
+
+                String deleteSQL = RequestSQL.DELETE.getRequest();
+                String whereSQL = RequestSQL.WHERE.getRequest();
+                String usersLoginSQL = RequestSQL.USERS_LOGIN.getRequest();
+                String requestSQL = deleteSQL + dbUsers + whereSQL + usersLoginSQL + " = '" + deletedUser.getLogin() + "'";
+
+
+
+                dbService.editTable(url, login, password, requestSQL);
                 break;
             }
         }
@@ -48,7 +69,14 @@ public class AdminPanel extends HttpServlet {
 
         DBService dbService = new DBService();
 
-        List<User> users = dbService.getUsers("jdbc:postgresql://localhost:5432/UsersDB", "Aliaksandr Dubadzelau", "551408", "usersdb");
+        String url = ConstantsDB.DATABASE_URL.getData();
+        String login = ConstantsDB.LOGIN.getData();
+        String password = ConstantsDB.PASSWORD.getData();
+        String dbUsers = ConstantsDB.USERS_TABLE.getData();
+
+        String selectSQL = RequestSQL.SELECT.getRequest();
+
+        List<User> users = dbService.getUsers(url, login, password, selectSQL + dbUsers);
 
         request.setAttribute("users", users);
 

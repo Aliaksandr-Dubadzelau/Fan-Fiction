@@ -1,8 +1,6 @@
 package servlet;
 
-import entity.Message;
-import entity.ProjectURL;
-import entity.User;
+import entity.*;
 import services.DBService;
 import services.MessageService;
 
@@ -24,12 +22,22 @@ public class FanFictionMainWindow extends HttpServlet {
         DBService dbService = new DBService();
         MessageService messageService = new MessageService();
 
+        String url = ConstantsDB.DATABASE_URL.getData();
+        String login = ConstantsDB.LOGIN.getData();
+        String password = ConstantsDB.PASSWORD.getData();
+        String dbMessages = ConstantsDB.MESSAGES_TABLE.getData();
+
         User user = (User) request.getSession().getAttribute("user");
         String messageArea = request.getParameter("message");
 
         Message message = messageService.getMessage(user, messageArea);
 
-        dbService.addMessage("jdbc:postgresql://localhost:5432/UsersDB", "Aliaksandr Dubadzelau", "551408", "messagesdb", message);
+        String insertSQL = RequestSQL.INSERT.getRequest();
+        String valuesSQL = RequestSQL.VALUES.getRequest();
+        String messageSQL = RequestSQL.MESSAGE.getRequest();
+        String requestSQL = insertSQL + dbMessages + " (" + messageSQL + ") " + valuesSQL + " ('" + message.toString() + "')";
+
+        dbService.editTable(url, login, password, requestSQL);
 
         ServletContext servletContext = getServletContext();
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(ProjectURL.SUCCESSFUL_ADDED.getURL());
@@ -41,8 +49,16 @@ public class FanFictionMainWindow extends HttpServlet {
 
         DBService dbService = new DBService();
 
-        List<Message> messages = dbService.getMessages("jdbc:postgresql://localhost:5432/UsersDB", "Aliaksandr Dubadzelau", "551408", "messagesdb");
+        String url = ConstantsDB.DATABASE_URL.getData();
+        String login = ConstantsDB.LOGIN.getData();
+        String password = ConstantsDB.PASSWORD.getData();
+        String dbMessages = ConstantsDB.MESSAGES_TABLE.getData();
 
+        String selectSQL = RequestSQL.SELECT.getRequest();
+
+        String requestSQL = selectSQL + dbMessages;
+
+        List<Message> messages = dbService.getMessages(url, login, password,  requestSQL);
         request.setAttribute("messages", messages);
 
         ServletContext servletContext = getServletContext();

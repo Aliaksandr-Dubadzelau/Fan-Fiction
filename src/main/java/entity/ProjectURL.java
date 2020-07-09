@@ -3,6 +3,7 @@ package entity;
 public enum ProjectURL {
     SIGN_IN("/SignIn"),
     SIGN_UP("/SignUp"),
+    ADMIN_PANEL("/AdminPanel"),
     MESSENGER_MAIN_WINDOW("/FanFictionMainWindow"),
     NOT_FOUND("/pages/errors/404.html"),
     EMPTY_FIELD("/pages/errors/emptyField.jsp"),

@@ -15,6 +15,10 @@ import java.io.IOException;
 })
 public class AdminAccessFilter implements Filter {
 
+    private final static String UNAUTHORIZED_ACCESS = "UnauthorizedAccess";
+    private final static String ADMIN_LOGIN = "DAdminV";
+    private final static String ADMIN_PASSWORD = "DAdminV";
+
     private String unauthorizedAccess;
 
     public AdminAccessFilter() {
@@ -22,7 +26,7 @@ public class AdminAccessFilter implements Filter {
 
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
-        unauthorizedAccess = fConfig.getInitParameter("UnauthorizedAccess");
+        unauthorizedAccess = fConfig.getInitParameter(UNAUTHORIZED_ACCESS);
     }
 
     @Override
@@ -39,7 +43,7 @@ public class AdminAccessFilter implements Filter {
 
         User user = (User) session.getAttribute("user");
 
-        if (user != null && user.getLogin().equals("DAdminV") && user.getPassword().equals("DAdminV")) {
+        if (user != null && user.getLogin().equals(ADMIN_LOGIN) && user.getPassword().equals(ADMIN_PASSWORD)) {
             chain.doFilter(filterRequest, response);
         }
         else {

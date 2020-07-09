@@ -11,8 +11,6 @@ public class Message {
         this.text = text;
     }
 
-
-
     @Override
     public String toString() {
         return text + "\n";
